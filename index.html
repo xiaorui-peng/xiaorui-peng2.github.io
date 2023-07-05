@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personal Website with Motion</title>
+  <style>
+    /* CSS for motion effects */
+    .fade-in {
+      opacity: 0;
+      animation: fadeInAnimation ease 2s forwards;
+    }
+
+    @keyframes fadeInAnimation {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-in-left {
+      transform: translateX(-100%);
+      animation: slideInLeftAnimation ease 1s forwards;
+    }
+
+    @keyframes slideInLeftAnimation {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    .zoom-in {
+      transform: scale(0);
+      animation: zoomInAnimation ease 1s forwards;
+    }
+
+    @keyframes zoomInAnimation {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    /* Additional CSS for styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="fade-in">
+    <h1>Welcome to My Personal Website</h1>
+  </header>
+
+  <div class="container">
+    <h2 class="slide-in-left">About Me</h2>
+    <p class="fade-in">I'm passionate about web development and love creating interactive websites.</p>
+
+    <h2 class="slide-in-left">Skills</h2>
+    <ul class="fade-in">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+
+    <h2 class="slide-in-left">Projects</h2>
+    <div class="fade-in">
+      <h3>Project 1</h3>
+      <p>Description of project 1.</p>
+
+      <h3>Project 2</h3>
+      <p>Description of project 2.</p>
+    </div>
+
+    <h2 class="slide-in-left">Contact</h2>
+    <p class="fade-in">You can reach me at example@example.com.</p>
+  </div>
+
+  <script>
+    // JavaScript for motion effects
+    const elements = document.querySelectorAll('.fade-in, .slide-in-left, .zoom-in');
+
+    const options = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    elements.forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
